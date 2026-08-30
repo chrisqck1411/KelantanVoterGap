@@ -211,7 +211,7 @@ geoLayer = L.geoJSON(geoData, { style: styleFor, onEachFeature: onEachFeature })
 map.fitBounds(geoLayer.getBounds(), { padding: [20, 20] });
 map.on('click', function() { clearPinned(); });
 
-const legend = L.control({ position: 'bottomright' });
+const legend = L.control({ position: 'bottomleft' });
 legend.onAdd = function() {
   const div = L.DomUtil.create('div', 'legend');
   div.id = 'legendbox';
