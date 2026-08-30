@@ -19,7 +19,7 @@
   .legend { background: white; padding: 10px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.15); font-size: 12px; line-height: 1.8; max-width: 200px; }
   .legend h4 { margin: 0 0 6px; font-size: 12px; font-weight: 600; }
   .legend .swatch { display:inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
-  #infopanel { background: white; padding: 12px 16px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.15); font-size: 12px; line-height: 1.55; min-width: 230px; max-width: 270px; max-height: 560px; overflow-y: auto; }
+  #infopanel { background: white; padding: 12px 16px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.15); font-size: 12px; line-height: 1.55; min-width: 230px; max-width: 270px; max-height: 560px; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; }
   #infopanel .ip-title { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
   #infopanel .ip-sub { color: #777; font-size: 11px; margin-bottom: 8px; }
   #infopanel .ip-section { margin-top: 10px; padding-top: 8px; border-top: 1px solid #eee; }
@@ -161,6 +161,9 @@ infopanel.onAdd = function() {
   const div = L.DomUtil.create('div', 'infopanel-wrap');
   div.id = 'infopanel';
   renderEmpty(div);
+  L.DomEvent.disableClickPropagation(div);
+  L.DomEvent.disableScrollPropagation(div);
+  L.DomEvent.on(div, 'touchstart touchmove', L.DomEvent.stopPropagation);
   return div;
 };
 infopanel.addTo(map);
